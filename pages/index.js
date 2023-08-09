@@ -1,5 +1,9 @@
 function Home() {
-  return <h1>Hello there!</h1>;
+  return (
+    <h1>
+      <strong>Amorzitos</strong>, I 💖 U, si me amas, dame una risadinhas 🤗
+    </h1>
+  );
 }
 
 export default Home;
