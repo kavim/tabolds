@@ -1,7 +1,7 @@
 services:
   database:
     env_file:
-      - ../.env.environment
+      - ../.env.development
     image: "postgres:16.0-alpine3.18"
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
