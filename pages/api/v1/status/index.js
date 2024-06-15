@@ -1,12 +1,11 @@
-import database from "infra/database.js";
+import database from "infra/database";
 
 async function status(request, response) {
-  const result = await database.query("SELECT 1+1");
-  console.log(result.rows);
-
   response.status(200).json({
-    status: "ON THE LINE",
-    message: "Hello World!",
+    updated_at: new Date().toISOString(),
+    dependencies: {
+      database: await database.info(),
+    },
   });
 }
 
