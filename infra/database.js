@@ -7,6 +7,7 @@ async function query(queryObject) {
     database: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     port: process.env.POSTGRES_PORT,
+    ssl: process.env.NODE_ENV === 'development' ? false : true
   });
 
   client.connect();
@@ -25,7 +26,7 @@ async function info() {
     "SELECT sum(numbackends) FROM pg_stat_database;",
   );
 
-  let version = await query("SHOW server_version;");
+  return await query("SHOW server_version;");
   let dbName = process.env.POSTGRES_USER;
   let openedConnections = await query({
     text: "SELECT count(*)::int FROM pg_stat_activity WHERE datname = $1;",
