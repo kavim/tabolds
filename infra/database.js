@@ -26,7 +26,7 @@ async function info() {
     "SELECT sum(numbackends) FROM pg_stat_database;",
   );
 
-  return await query("SHOW server_version;");
+  let version = await query("SHOW server_version;");
   let dbName = process.env.POSTGRES_USER;
   let openedConnections = await query({
     text: "SELECT count(*)::int FROM pg_stat_activity WHERE datname = $1;",
