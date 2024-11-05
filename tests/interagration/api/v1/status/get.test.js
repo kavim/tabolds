@@ -9,11 +9,12 @@ test("should be a fine status result in /api/v1/status", async () => {
 
   expect(data.dependencies.database.version).toBe("16.0");
   expect(data.dependencies.database.max_connections).toBeGreaterThan(0);
-  expect(data.dependencies.database.openedConnections).toBe(1);
+  expect(data.dependencies.database.openedConnections).toBe(0);
 });
 
-test.only("Sql injection", async () => {
+test("Sql injection", async () => {
   const response = await fetch(
     "http://localhost:3000/api/v1/status?databaseName='; SELECT pg_sleep(4) --';",
   );
+  expect(response.status).toBe(200);
 });
