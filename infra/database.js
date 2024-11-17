@@ -39,8 +39,8 @@ async function getNewClient() {
   const client = new Client({
     user: process.env.POSTGRES_USER,
     host: process.env.POSTGRES_HOST,
-    database: process.env.POSTGRES_DATABASE,
-    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB,
+    password: process.env.POSTGRES_PASSWORD, // Confirme que é uma string válida
     port: process.env.POSTGRES_PORT,
     ssl: process.env.NODE_ENV === 'production' ? true : false
   });
