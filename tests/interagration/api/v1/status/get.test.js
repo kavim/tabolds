@@ -1,3 +1,9 @@
+import orchestrator from "tests/orchestrator.js";
+
+beforeAll(async () => {
+  await orchestrator.waitForAllServicesToBeReady();
+});
+
 test("should be a fine status result in /api/v1/status", async () => {
   const response = await fetch("http://localhost:3000/api/v1/status");
   const data = await response.json();
