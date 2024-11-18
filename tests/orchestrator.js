@@ -6,8 +6,12 @@ async function waitForAllServices() {
 
   async function waitForWebServer() {
     return retry(fetchStatusPage, {
-      retries: 100,
+      retries: 5,
       maxTimeout: 1000,
+      factor: 2,
+      onRetry: (err, attempt) => {
+        console.log(`Attempt ${attempt} failed: ${err.message}`);
+      },
     });
 
     async function fetchStatusPage() {
