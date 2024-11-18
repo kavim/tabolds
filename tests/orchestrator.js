@@ -1,11 +1,11 @@
 import retry from "async-retry";
 
-async function waitForAllServicesToBeReady() {
+const orchestrator = async function waitForAllServicesToBeReady() {
   await waitForWebServer();
 
   async function waitForWebServer() {
     return retry(fetchStatusPage, {
-      retries: 20,
+      retries: 3,
       minTimeout: 1000,
       factor: 2,
     });
@@ -18,6 +18,6 @@ async function waitForAllServicesToBeReady() {
       }
     }
   }
-}
+};
 
-export default { waitForAllServicesToBeReady };
+export default orchestrator;
