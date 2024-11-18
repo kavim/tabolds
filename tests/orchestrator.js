@@ -5,7 +5,7 @@ const orchestrator = async function waitForAllServicesToBeReady() {
 
   async function waitForWebServer() {
     return retry(fetchStatusPage, {
-      retries: 20,
+      retries: 3,
       minTimeout: 1000,
       factor: 2,
     });
