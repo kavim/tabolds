@@ -7,7 +7,7 @@ const createJestConfig = nextJest({
 });
 const jestConfig = createJestConfig({
   moduleDirectories: ["node_modules", "<rootDir>"],
-  setupFilesAfterEnv: ["<rootDir>/setup.js"],
+  setupFilesAfterEnv: ["<rootDir>/tests/setup.js"],
   testTimeout: 120000,
 });
 
