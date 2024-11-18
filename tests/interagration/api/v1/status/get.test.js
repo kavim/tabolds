@@ -1,7 +1,7 @@
 import orchestrator from "tests/orchestrator.js";
 
 beforeAll(async () => {
-  await orchestrator.waitForAllServicesToBeReady();
+  await orchestrator.waitForAllServices();
 });
 
 test("should be a fine status result in /api/v1/status", async () => {

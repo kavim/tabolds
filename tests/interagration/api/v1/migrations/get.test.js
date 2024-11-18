@@ -2,9 +2,9 @@ import database from "infra/database";
 import orchestrator from "tests/orchestrator.js";
 
 beforeAll(async () => {
-  await orchestrator.waitForAllServicesToBeReady();
-  await database.query("drop schema public cascade; create schema public;");
-}, 30000); // Set a specific timeout for this hook
+  await orchestrator.waitForAllServices();
+  await orchestrator.clearDatabase();
+});
 
 test("GET migrations 200", async () => {
   const response = await fetch("http://localhost:3000/api/v1/migrations");
