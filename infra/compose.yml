@@ -2,8 +2,6 @@ services:
   database:
     image: "postgres:16.0-alpine3.18"
     container_name: ${POSTGRES_CONTAINER_NAME:-postgres-default}
-    env_file:
-      - ../.env
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
       
