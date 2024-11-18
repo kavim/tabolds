@@ -1,6 +1,8 @@
 import retry from "async-retry";
 import database from "infra/database.js";
 
+console.log("\n\n🛞 Orchestrator loaded\n\n");
+
 async function waitForAllServices() {
   await waitForWebServer();
 
