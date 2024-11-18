@@ -1,6 +1,6 @@
 import retry from "async-retry";
 
-async function waitForAllServicesToBeReady() {
+const orchestrator = async function waitForAllServicesToBeReady() {
   await waitForWebServer();
 
   async function waitForWebServer() {
@@ -18,6 +18,6 @@ async function waitForAllServicesToBeReady() {
       }
     }
   }
-}
+};
 
-export default { waitForAllServicesToBeReady };
+export default orchestrator;
