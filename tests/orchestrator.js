@@ -1,9 +1,10 @@
 import retry from "async-retry";
 import database from "infra/database.js";
 
-console.log("\n\n🛞 Orchestrator loaded\n\n");
+console.log("\n\n🕵️ \t Orchestrator loaded\n\n");
 
 async function waitForAllServices() {
+  console.log("🟡 Waiting for all services");
   await waitForWebServer();
 
   async function waitForWebServer() {
@@ -27,6 +28,7 @@ async function waitForAllServices() {
 }
 
 async function clearDatabase() {
+  console.log("🎲 Will drop schema");
   await database.query("drop schema public cascade; create schema public;");
 }
 
