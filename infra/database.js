@@ -7,8 +7,11 @@ async function query(queryObject) {
     return await client.query(queryObject);
   } catch (error) {
     console.error("Error running query", error);
+    throw error;
   } finally {
-    await client.end();
+    if (client) {
+      await client.end();
+    }
   }
 }
 
