@@ -1,4 +1,4 @@
-import migrationRunner from "node-pg-migrate";
+import { runner as migrationRunner } from "node-pg-migrate";
 import { join } from "node:path";
 import database from "infra/database";
 
@@ -30,10 +30,9 @@ export default async function migrations(request, response) {
     if (request.method === "GET") {
       const pendingMigrations = await migrationRunner({
         ...defaultMigrationOptions,
+        dryRun: true,
       });
-      return response
-        .status(pendingMigrations > 1 ? 201 : 200)
-        .json(pendingMigrations);
+      return response.status(200).json(pendingMigrations);
     }
 
     if (request.method === "POST") {
@@ -44,7 +43,10 @@ export default async function migrations(request, response) {
       return response.status(200).json(migratedMigrations);
     }
   } catch (error) {
-    return response.status(500).json({ error: "Migration operation failed." });
+    console.error("Migration error:", error);
+    return response
+      .status(500)
+      .json({ error: "Migration operation failed.", details: error.message });
   } finally {
     if (dbClient) {
       await dbClient.end();
